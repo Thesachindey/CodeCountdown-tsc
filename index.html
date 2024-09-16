@@ -4,176 +4,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>codeCountdown</title>
+    <title>CodeCountdown</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sirin+Stencil&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
+        /* Global Styles */
+        html,
         body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
             margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
             background-color: black;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 6px;
         }
-       
+
+        /* Navbar Styles */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            display: flex;
+            /* justify-content: space-between; */
+            align-items: center;
+            backdrop-filter: blur(10px);
+            font-family: "Silkscreen", sans-serif;
+            font-weight: 700;
+            color: white;
+            z-index: 1000;
+        }
+
+        #contact {
+            list-style: none;
+            display: flex;
+            font-family: "Silkscreen", sans-serif;
+            font-weight: 700;
+            color: white;
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #contact a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        #contact a:hover {
+            color: #66ccff;
+        }
+
+        /* Responsive Navbar for smaller screens */
+        @media (max-width: 768px) {
+
+            .menu-toggle {
+                cursor: pointer;
+                font-size: 24px;
+            }
+        }
+
+        /* Timer Section */
+        .timer-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        h1 {
+            font-family: "Sixtyfour", system-ui;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .timer-section h1 {
+                font-size: 25px;
+                text-align: left;
+                line-height:50px;
+                
+            }
+            .logo h2{
+                color: rgb(33, 69, 226);
+            }
+            
+        }
 
         .timer {
-            text-align: center;
-            background-color: #fff;
+            background-color: #ffffff;
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        @media (max-width: 768px) {
+            .timer{
+                background: linear-gradient(to top, #000000,#0f0066);;
+                border: none;
+            }
+          
         }
 
         .time {
             font-size: 2em;
+            color: black;
             margin: 10px 0;
+            font-family: "Sirin Stencil", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        @media (max-width: 768px) {
+            .time{
+                color: white;
+            }
         }
 
         .label {
             font-size: 1.2em;
             color: #555;
+            font-family: "Sirin Stencil", sans-serif;
         }
 
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(to top, #0f0066, #000000);
+            color: #fff;
+            height: 20rem;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-    
-    body {
-        font-family: 'Courier New', Courier, monospace; /* Mono font */
-    }
+        }
 
-    footer {
-        background: linear-gradient(to right, #003366, #66ccff); /* Dark blue to light blue gradient */
-        color: #fff;
-        padding: 20px;
-        font-size: 14px;
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-    }
+        .footer-links {
+            margin-top: 10px;
+        }
 
-    .footer-content {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
+        .footer-links a {
+            color: #e2e2e2;
+            text-decoration: none;
+            margin: 0 10px;
+        }
 
-    .footer-left, .footer-center, .footer-right {
-        padding: 10px;
-    }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
 
-    .footer-left h2 {
-        margin: 0;
-        font-size: 1.5em;
-    }
+        hr {
+            width: 80%;
 
-    .footer-left p {
-        margin: 5px 0 0;
-    }
+        }
+        h3{
+            font-family: "Sixtyfour", system-ui;
+            font-size: 14px;
+        }
 
-    .footer-center h3, .footer-right h3 {
-        margin: 0;
-        font-size: 1.2em;
-    }
+        .last {
+            font-family: "Work Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            color: rgb(207, 207, 207);
+        }
 
-    .footer-center ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .footer-center li {
-        margin: 10px 0;
-    }
-
-    .footer-center a {
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .footer-center a:hover {
-        text-decoration: underline;
-    }
-
-    .social-links {
-        display: flex;
-        gap: 10px;
-    }
-
-    .social-icon {
-        background: #003366;
-        color: #fff;
-        padding: 10px;
-        border-radius: 50%;
-        text-align: center;
-        text-decoration: none;
-        font-size: 1.2em;
-    }
-
-    .social-icon:hover {
-        background: #66ccff;
-    }
-
-
-
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            h3{
+                text-align: start;
+                font-size: 13px;
+                line-height:20px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <span>
-        <h1 style="color: white;">DAYS SINCE I STARTED CODING</h1>
-    </span>
-    <div class="timer">
-        <div id="countdown">
-            <div class="time" id="days">00</div>
-            <div class="label">Days</div>
-            <div class="time" id="hours">00</div>
-            <div class="label">Hours</div>
-            <div class="time" id="minutes">00</div>
-            <div class="label">Minutes</div>
-            <div class="time" id="seconds">00</div>
-            <div class="label">Seconds</div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <h2>CodeCountdown</h2>
+        </div>
+
+    </nav>
+
+    <!-- Timer Section -->
+    <div class="timer-section">
+        <h1>DAYS SINCE I STARTED CODING</h1>
+        <div class="timer">
+            <div id="countdown">
+                <div class="time" id="days">00</div>
+                <div class="label">Days</div>
+                <div class="time" id="hours">00</div>
+                <div class="label">Hours</div>
+                <div class="time" id="minutes">00</div>
+                <div class="label">Minutes</div>
+                <div class="time" id="seconds">00</div>
+                <div class="label">Seconds</div>
+            </div>
         </div>
     </div>
+    <div id="contact">
+        <a href="https://github.com/Thesachindey/">Contact</a>
+    </div>
 
+    <!-- Footer -->
     <footer>
+        <hr>
         <div class="footer-content">
-            <div class="footer-left">
-                <h2>CodeCountdown - by TheSachindey</h2>
+            <h3>CodeCountdown - by TheSachinDey</h3>
+            <!-- <hr > -->
+            <div class="last">
+
                 <p>© 2024 CodeCountdown. All rights reserved.</p>
-            </div>
-            <div class="footer-center">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-right">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://github.com/Thesachindey/" class="social-icon">GitHub</a>
-                    <a href="#" class="social-icon">TW</a>
-                    <a href="#" class="social-icon">IG</a>
-                    <a href="#" class="social-icon">LI</a>
+                <div class="footer-links">
+                    <a href="#about">About Us</a>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </div>
         </div>
     </footer>
-    
 
+    <!-- Countdown Script -->
     <script>
         function updateCountdown() {
             const targetDate = new Date("2024-06-03T00:00:00Z");
             const now = new Date();
-            const timeDifference = targetDate - now;
+            const timeDifference = now - targetDate;
 
             const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
